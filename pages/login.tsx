@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
+import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { Button, Checkbox, Form, Input } from "antd";
 export default function LoginPage(props: any) {
