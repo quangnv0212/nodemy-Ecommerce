@@ -31,4 +31,5 @@ export default function handler(
       resolve(true);
     });
   });
+  res.send("ok");
 }

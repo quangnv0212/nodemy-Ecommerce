@@ -4,15 +4,21 @@ import React from "react";
 import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { Button, Checkbox, Form, Input } from "antd";
+import { useAuth } from "../hooks";
+import { LoginPayload } from "../models";
 export default function LoginPage(props: any) {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const { profile, error, firstLoading, login, logout } = useAuth();
+  const onFinish = async (values: LoginPayload) => {
+    try {
+      await login(values);
+    } catch (err: unknown) {
+      console.log(err);
+    }
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
+  console.log(profile);
   return (
     <div className="bg-orange">
       <Head>
@@ -57,6 +63,10 @@ export default function LoginPage(props: any) {
         </Form.Item>
       </Form>
       <Link href={"/register"}>Chuyển sang trang đăng ký</Link>
+      <Button onClick={logout} type="ghost" htmlType="submit">
+        Log out
+      </Button>
+      {/* {profile && profile.data} */}
     </div>
   );
 }
