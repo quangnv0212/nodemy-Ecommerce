@@ -35,3 +35,23 @@ export interface Artist {
     slug: string;
   };
 }
+
+export interface AlbumRespone {
+  data: Album[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+export interface AlbumListConfig {
+  populate?: string;
+  "pagination[page]"?: string;
+  "pagination[pageSize]"?: string;
+  sort?: string;
+  "filters[mood][$eq]"?: string;
+}
